@@ -7,11 +7,14 @@ public class PlayerControllerScript : MonoBehaviour
     public Rigidbody rigidBody;
     public Camera playerCamera;
     public float speed;
+    public AudioSource footstep;
+
+    private Vector3 previousPosition;
 
     // Use this for initialization
     void Start()
     {
-
+        previousPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -37,6 +40,12 @@ public class PlayerControllerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(speed * GetMovementVector(playerCamera.transform.right));
+        }
+
+        if((transform.position - previousPosition).magnitude >= 2)
+        {
+            footstep.Play();
+            previousPosition = transform.position;
         }
     }
     Vector3 GetMovementVector(Vector3 direction)
