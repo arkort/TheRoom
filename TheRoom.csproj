@@ -76,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CrosshairScript.cs" />
-    <Compile Include="Assets\Scripts\MouseLookScript.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

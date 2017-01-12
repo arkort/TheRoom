@@ -4,65 +4,65 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
-    public Rigidbody rigidBody;
-    public Camera playerCamera;
+    const float stepLength = 2;
+
     public float speed;
     public AudioSource footstep;
 
     private Vector3 previousPosition;
     private float pathLengthFootstep;
 
+    const float verticalLookLimit = 60f;
+    float verticalRotation = 0;
+
     // Use this for initialization
     void Start()
     {
         pathLengthFootstep = 0;
         previousPosition = transform.position;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        ProcessMouseLook();
+        ProcessMovement();
     }
 
-    void HandleMovement()
+    private void ProcessMouseLook()
     {
-        transform.rotation = Quaternion.FromToRotation(GetNormalizedPlainVector(transform.forward), GetNormalizedPlainVector(playerCamera.transform.forward));
+        float rot = Input.GetAxis("Mouse X");
+        transform.Rotate(0, rot, 0);
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(speed * GetMovementVector(transform.forward));
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(speed * GetMovementVector(transform.forward * -1));
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(speed * GetMovementVector(transform.right * -1));
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(speed * GetMovementVector(transform.right));
-        }
+        var currentUpDown = Camera.main.transform.rotation.eulerAngles;
+        verticalRotation -= Input.GetAxis("Mouse Y");
+        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
+        Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+    }
+
+    private void ProcessMovement()
+    {
+        float forwardSpeed = Input.GetAxis("Vertical") * speed;
+        float sideSpeed = Input.GetAxis("Horizontal") * speed;
+
+        Vector3 speedResult = new Vector3(sideSpeed, 0, forwardSpeed);
+        speedResult = transform.rotation * speedResult;
+        CharacterController cc = GetComponent<CharacterController>();
+        cc.SimpleMove(speedResult);
 
         pathLengthFootstep += (transform.position - previousPosition).magnitude;
         previousPosition = transform.position;
 
-        if (pathLengthFootstep >= 2)
+        ProcessFootsteps();
+    }
+
+    private void ProcessFootsteps()
+    {
+        if (pathLengthFootstep >= stepLength)
         {
             footstep.Play();
             pathLengthFootstep = 0;
         }
-
-    }
-    Vector3 GetMovementVector(Vector3 direction)
-    {
-        return GetNormalizedPlainVector(direction);
-    }
-
-    Vector3 GetNormalizedPlainVector(Vector3 vector)
-    {
-        return Vector3.ProjectOnPlane(vector, new Vector3(0, 1, 0)).normalized;
     }
 }
