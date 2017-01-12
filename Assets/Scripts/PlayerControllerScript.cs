@@ -27,6 +27,8 @@ public class PlayerControllerScript : MonoBehaviour
 
     void HandleMovement()
     {
+        transform.rotation = Quaternion.FromToRotation(GetNormalizedPlainVector(transform.forward), GetNormalizedPlainVector(playerCamera.transform.forward));
+
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(speed * GetMovementVector(transform.forward));
@@ -53,10 +55,14 @@ public class PlayerControllerScript : MonoBehaviour
             pathLengthFootstep = 0;
         }
 
-        transform.rotation = playerCamera.transform.rotation;
     }
     Vector3 GetMovementVector(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(direction, new Vector3(0, 1, 0)).normalized;
+        return GetNormalizedPlainVector(direction);
+    }
+
+    Vector3 GetNormalizedPlainVector(Vector3 vector)
+    {
+        return Vector3.ProjectOnPlane(vector, new Vector3(0, 1, 0)).normalized;
     }
 }
