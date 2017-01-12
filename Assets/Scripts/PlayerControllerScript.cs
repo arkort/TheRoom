@@ -14,6 +14,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     const float verticalLookLimit = 60f;
     float verticalRotation = 0;
+    const float sensitivity = 6;
 
     // Use this for initialization
     void Start()
@@ -32,11 +33,11 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void ProcessMouseLook()
     {
-        float rot = Input.GetAxis("Mouse X");
-        transform.Rotate(0, rot, 0);
+        float horizontalRotation = Input.GetAxis("Mouse X") * sensitivity;
+        transform.Rotate(0, horizontalRotation, 0);
 
         var currentUpDown = Camera.main.transform.rotation.eulerAngles;
-        verticalRotation -= Input.GetAxis("Mouse Y");
+        verticalRotation -= Input.GetAxis("Mouse Y") * sensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
