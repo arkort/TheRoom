@@ -10,10 +10,12 @@ public class PlayerControllerScript : MonoBehaviour
     public AudioSource footstep;
 
     private Vector3 previousPosition;
+    private float pathLengthFootstep;
 
     // Use this for initialization
     void Start()
     {
+        pathLengthFootstep = 0;
         previousPosition = transform.position;
     }
 
@@ -27,26 +29,31 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(speed * GetMovementVector(playerCamera.transform.forward));
+            transform.Translate(speed * GetMovementVector(transform.forward));
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(speed * GetMovementVector(playerCamera.transform.forward * -1));
+            transform.Translate(speed * GetMovementVector(transform.forward * -1));
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(speed * GetMovementVector(playerCamera.transform.right * -1));
+            transform.Translate(speed * GetMovementVector(transform.right * -1));
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(speed * GetMovementVector(playerCamera.transform.right));
+            transform.Translate(speed * GetMovementVector(transform.right));
         }
 
-        if((transform.position - previousPosition).magnitude >= 2)
+        pathLengthFootstep += (transform.position - previousPosition).magnitude;
+        previousPosition = transform.position;
+
+        if (pathLengthFootstep >= 2)
         {
             footstep.Play();
-            previousPosition = transform.position;
+            pathLengthFootstep = 0;
         }
+
+        transform.rotation = playerCamera.transform.rotation;
     }
     Vector3 GetMovementVector(Vector3 direction)
     {
