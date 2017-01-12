@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 1768153797}
   - component: {fileID: 1768153798}
   - component: {fileID: 1768153794}
+  - component: {fileID: 1768153799}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -758,6 +759,18 @@ CapsuleCollider:
   m_Height: 1.9
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1768153799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768153793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7575c6e54e978841bbe1ac87934c4d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairTexture: {fileID: 2800000, guid: a2d7f7a842a4f11469c97886526dcea4, type: 3}
 --- !u!1 &1915547707
 GameObject:
   m_ObjectHideFlags: 0
