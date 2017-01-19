@@ -18,21 +18,30 @@ public class UseScript : MonoBehaviour
 
     }
 
-    private void OnGUI()
+    void OnGUI()
     {
-        if (Input.GetKey(KeyCode.E))
+
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 1.5f))
         {
-            RaycastHit hit;
+            var usableScript = hit.collider.GetComponent<IUsableItem>();
 
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
+            if (usableScript != null)
             {
-                var usableScript = hit.collider.GetComponent<IUsableItem>();
+                var size = 200;
 
-                if (usableScript != null)
-                {
-                    GUI.Label(new Rect(0, 0, 200, 200), "ALEEEE", new GUIStyle() { fontSize = 44 });
-                }
+                var style = new GUIStyle() { fontSize = 26, alignment = TextAnchor.LowerCenter };
+                style.normal.textColor = Color.white;
+
+                GUI.Label(new Rect(
+                    Screen.width / 2 - size / 2,
+                    Screen.height - 50 - size,
+                    size,
+                    size), "Press E to use", style);
             }
         }
+
     }
 }
