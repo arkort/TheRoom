@@ -17,8 +17,6 @@ public class UseScript : MonoBehaviour
 
     void OnGUI()
     {
-
-
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 1.5f))
@@ -37,8 +35,12 @@ public class UseScript : MonoBehaviour
                     Screen.height - 50 - size,
                     size,
                     size), "Press E to use", style);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    usableScript.Use();
+                }
             }
         }
-
     }
 }
