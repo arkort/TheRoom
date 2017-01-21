@@ -2,6 +2,7 @@
 
 public class UseScript : MonoBehaviour
 {
+    public AudioSource UseSound;
 
     // Use this for initialization
     void Start()
@@ -38,6 +39,7 @@ public class UseScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    UseSound.Play();
                     usableScript.Use();
                 }
             }
