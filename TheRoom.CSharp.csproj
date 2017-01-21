@@ -75,8 +75,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\MouseLookScript.cs" />
+    <Compile Include="Assets\Scripts\CrosshairScript.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IUsableItem.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
+    <Compile Include="Assets\Scripts\UseScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
