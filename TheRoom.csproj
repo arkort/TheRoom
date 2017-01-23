@@ -76,7 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CrosshairScript.cs" />
+    <Compile Include="Assets\Scripts\DummyMusicScript.cs" />
     <Compile Include="Assets\Scripts\DummyUsableScript.cs" />
+    <Compile Include="Assets\Scripts\GlobalScript.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IUsableItem.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
     <Compile Include="Assets\Scripts\UseScript.cs" />

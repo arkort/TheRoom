@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class GlobalScript {
     private static GlobalScript _instance;
@@ -24,7 +25,7 @@ public class GlobalScript {
         {
             if(_globalLight == null)
             {
-                _globalLight = GameObject.FindObjectsOfType<Light>()[0];
+                _globalLight = GameObject.FindObjectsOfType<Light>().FirstOrDefault(x => x.name == "GlobalLight");
             }
             return _globalLight;
         }
