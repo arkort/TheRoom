@@ -3,6 +3,7 @@
 public class UseScript : MonoBehaviour
 {
     public AudioSource UseSound;
+    public float Distance;
 
     // Use this for initialization
     void Start()
@@ -20,7 +21,7 @@ public class UseScript : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 1.5f))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Distance))
         {
             var usableScript = hit.collider.GetComponent<IUsableItem>();
 

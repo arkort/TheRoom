@@ -12,7 +12,9 @@ public class PlayerControllerScript : MonoBehaviour
     private Vector3 previousPosition;
     private float pathLengthFootstep;
 
-    const float verticalLookLimit = 60f;
+    const float verticalLookLimitUp = 90f;
+    const float verticalLookLimitDown = -60f;
+
     float verticalRotation = 0;
     const float sensitivity = 6;
 
@@ -38,7 +40,7 @@ public class PlayerControllerScript : MonoBehaviour
 
         var currentUpDown = Camera.main.transform.rotation.eulerAngles;
         verticalRotation -= Input.GetAxis("Mouse Y") * sensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
+        verticalRotation = Mathf.Clamp(verticalRotation, verticalLookLimitDown, verticalLookLimitUp);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
