@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashlightScript : MonoBehaviour, IUsableItem {
-    public void Use()
+public class FlashlightScript : InventoryItemScript {
+    public override void Use()
     {
         
     }

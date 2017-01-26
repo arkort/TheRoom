@@ -81,6 +81,9 @@
     <Compile Include="Assets\Scripts\FlashlightScript.cs" />
     <Compile Include="Assets\Scripts\GlobalScript.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IUsableItem.cs" />
+    <Compile Include="Assets\Scripts\Inventory.cs" />
+    <Compile Include="Assets\Scripts\InventoryItemScript.cs" />
+    <Compile Include="Assets\Scripts\InventoryScript.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
     <Compile Include="Assets\Scripts\UseScript.cs" />
   </ItemGroup>
