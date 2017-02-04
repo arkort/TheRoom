@@ -8,6 +8,7 @@ public class InventoryScript : MonoBehaviour {
     public float Distance;
 
     private Inventory _inventory;
+    private InventoryItemScript _currentItem;
 
     // Use this for initialization
     void Start()
@@ -46,6 +47,11 @@ public class InventoryScript : MonoBehaviour {
                 {
                     UseSound.Play();
                     _inventory.AddToInventory(usableScript);
+                    if(_currentItem == null)
+                    {
+                        _currentItem = usableScript;
+                        _currentItem.InstantiateActiveItem(Camera.main.transform);
+                    }
                     Destroy(usableScript.gameObject);
                 }
             }
