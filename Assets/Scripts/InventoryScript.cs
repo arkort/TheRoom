@@ -50,7 +50,7 @@ public class InventoryScript : MonoBehaviour {
                     if(_currentItem == null)
                     {
                         _currentItem = usableScript;
-                        _currentItem.InstantiateActiveItem(Camera.main.transform);
+                        _currentItem.InstantiateActiveItem(Camera.main);
                     }
                     Destroy(usableScript.gameObject);
                 }

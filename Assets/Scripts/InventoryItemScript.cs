@@ -8,8 +8,12 @@ public abstract class InventoryItemScript : MonoBehaviour {
 
     public abstract void Use();
 
-    public GameObject InstantiateActiveItem(Transform parentCamera)
+    public GameObject InstantiateActiveItem(Camera parentCamera)
     {
-        return Instantiate(Prefab, parentCamera.parent.position + new Vector3(0,0,-1), new Quaternion(0, 0, 0 , 0), parentCamera);
+        var obj = Instantiate(Prefab, parentCamera.transform.position, parentCamera.transform.rotation * Quaternion.Euler(180,270,0), parentCamera.transform);
+
+        obj.transform.localPosition = new Vector3(0.1f, -0.1f, 0.3f);
+
+        return obj;
     }
 }
