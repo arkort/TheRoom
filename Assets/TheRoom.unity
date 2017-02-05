@@ -1027,6 +1027,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!108 &1466715880 stripped
+Light:
+  m_PrefabParentObject: {fileID: 108748212511551394, guid: 3303325697720ff41ae40977406c44d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1971531732}
 --- !u!1 &1547646651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1418,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1552783214094450, guid: 3303325697720ff41ae40977406c44d5,
         type: 2}
+    - target: {fileID: 114394666379816568, guid: 3303325697720ff41ae40977406c44d5,
+        type: 2}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 1466715880}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3303325697720ff41ae40977406c44d5, type: 2}
   m_IsPrefabParent: 0

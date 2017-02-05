@@ -19,7 +19,13 @@ public class InventoryScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButton("Fire1"))
+        {
+            if(_currentItem != null)
+            {
+                _currentItem.Use();
+            }
+        }
     }
 
     void OnGUI()
